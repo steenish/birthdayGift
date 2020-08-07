@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour {
     private float speed = 1.0f;
     [SerializeField]
     private float movementSmoothing = 0.05f;
+	[SerializeField]
+	private ContextSwitcher contextSwitcher;
 #pragma warning restore
 
     private AudioManager audioManager;
@@ -35,6 +38,8 @@ public class PlayerController : MonoBehaviour {
         move = Input.GetAxis("Horizontal");
 
         Move(move);
+
+		contextSwitcher.position = (int) transform.position.x;
     }
 
     private void Move(float move) {
